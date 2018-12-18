@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
+import LogInForm from "./LogInForm";
 
 export default class Header extends Component {
   render() {
     return (
-      <Navbar inverse collapseOnSelect fixedTop>
+      <Navbar
+        inverse
+        collapseOnSelect
+        fixedTop
+        handleLogIn={this.props.handleLogIn}
+      >
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#brand">The Thespian's Monologue Journal</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
-        <Navbar.Collapse>
+        <Navbar.Collapse handleLogIn={this.props.handleLogIn}>
           <Nav>
             <NavItem eventKey={1} href="#">
               Link
@@ -27,13 +33,11 @@ export default class Header extends Component {
               <MenuItem eventKey={3.3}>Separated link</MenuItem>
             </NavDropdown>
           </Nav>
-          <Nav pullRight>
+          <Nav pullRight handleLogIn={this.props.handleLogIn}>
             <NavItem eventKey={1} href="#">
               Sign Up
             </NavItem>
-            <NavItem eventKey={2} href="#">
-              Log In
-            </NavItem>
+            <NavItem onClick={this.props.handleLogIn}>Log In</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

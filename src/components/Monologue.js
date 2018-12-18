@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import {
+  Popover,
+  OverlayTrigger,
+  Button,
+  ButtonToolbar
+} from "react-bootstrap";
 
 export default class Monologue extends Component {
   state = {
@@ -26,6 +31,30 @@ export default class Monologue extends Component {
         {this.props.monologue.length}
       </Popover>
     );
+
+    const fullMonologue = (
+      <div className="monologue btn-center">
+        <p>{this.props.monologue.script}</p>
+        <ButtonToolbar
+          className="buttons"
+          bsStyle="text-center"
+          bsSize="xsmall"
+        >
+          <Button
+            bsStyle="warning"
+            onClick={e => this.props.handleEdit(e, this.props.monologue)}
+          >
+            Edit Monologue
+          </Button>
+          <Button
+            bsStyle="danger"
+            onClick={e => this.props.handleDelete(e, this.props.monologue)}
+          >
+            Delete Monologue
+          </Button>
+        </ButtonToolbar>
+      </div>
+    );
     return (
       <div>
         <OverlayTrigger
@@ -38,7 +67,7 @@ export default class Monologue extends Component {
           </h3>
         </OverlayTrigger>
 
-        {this.state.clicked ? <p>{this.props.monologue.script}</p> : null}
+        {this.state.clicked ? fullMonologue : null}
       </div>
     );
   }
