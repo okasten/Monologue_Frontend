@@ -7,7 +7,8 @@ export default class MonologueContainer extends Component {
   state = {
     monologues: [],
     addClicked: false,
-    editClicked: false
+    editClicked: false,
+    currentMonologue: ""
   };
 
   componentDidMount() {
@@ -44,9 +45,10 @@ export default class MonologueContainer extends Component {
       });
   };
 
-  handleEdit = monologue => {
+  handleEdit = (e, monologue) => {
     this.setState({
-      editClicked: !this.state.editClicked
+      editClicked: !this.state.editClicked,
+      currentMonologue: monologue
     });
   };
 
@@ -102,7 +104,7 @@ export default class MonologueContainer extends Component {
               handleSubmit={this.handlePatch}
               handleClose={this.handleEdit}
               context="edit"
-              currentMonologue={monologue}
+              currentMonologue={this.state.currentMonologue}
             />
           ) : null}
         </div>
