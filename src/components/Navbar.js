@@ -9,6 +9,7 @@ export default class Header extends Component {
         collapseOnSelect
         fixedTop
         handleLogIn={this.props.handleLogIn}
+        handleSignUp={this.props.handleSignUp}
       >
         <Navbar.Header>
           <Navbar.Brand>
@@ -16,7 +17,10 @@ export default class Header extends Component {
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
-        <Navbar.Collapse handleLogIn={this.props.handleLogIn}>
+        <Navbar.Collapse
+          handleLogIn={this.props.handleLogIn}
+          handleSignUp={this.props.handleSignUp}
+        >
           <Nav>
             <NavItem eventKey={1} href="#">
               Link
@@ -32,10 +36,12 @@ export default class Header extends Component {
               <MenuItem eventKey={3.3}>Separated link</MenuItem>
             </NavDropdown>
           </Nav>
-          <Nav pullRight handleLogIn={this.props.handleLogIn}>
-            <NavItem eventKey={1} href="#">
-              Sign Up
-            </NavItem>
+          <Nav
+            pullRight
+            handleLogIn={this.props.handleLogIn}
+            handleSignUp={this.props.handleSignUp}
+          >
+            <NavItem onClick={this.props.handleSignUp}>Sign Up</NavItem>
             <NavItem onClick={this.props.handleLogIn}>Log In</NavItem>
           </Nav>
         </Navbar.Collapse>

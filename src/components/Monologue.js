@@ -35,18 +35,16 @@ export default class Monologue extends Component {
     const fullMonologue = (
       <div className="monologue btn-center">
         <p>{this.props.monologue.script}</p>
-        <ButtonToolbar
-          className="buttons"
-          bsStyle="text-center"
-          bsSize="xsmall"
-        >
+        <ButtonToolbar className="buttons" bsStyle="text-center">
           <Button
+            bsSize="small"
             bsStyle="warning"
             onClick={e => this.props.handleEdit(e, this.props.monologue)}
           >
             Edit Monologue
           </Button>
           <Button
+            bsSize="small"
             bsStyle="danger"
             onClick={e => this.props.handleDelete(e, this.props.monologue)}
           >

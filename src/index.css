@@ -18,7 +18,7 @@ code {
   margin-right: auto;
   width: 35%;
   display: block;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .individualMonologues {
@@ -48,8 +48,8 @@ img {
   text-align: center;
   width: 50%;
   height: 50%;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .bg-modal {
