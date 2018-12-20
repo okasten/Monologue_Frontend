@@ -45,6 +45,7 @@ export default class Stopwatch extends Component {
     let timeLength = minutes + " minutes " + seconds + " seconds";
 
     this.props.handlePatch(e, { length: timeLength }, this.props.monologue);
+    this.props.handleClose();
   };
 
   render() {
