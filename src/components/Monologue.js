@@ -5,16 +5,25 @@ import {
   Button,
   ButtonToolbar
 } from "react-bootstrap";
+import Stopwatch from "./Stopwatch";
 
 export default class Monologue extends Component {
   state = {
-    clicked: false
+    clicked: false,
+    timer: false
   };
 
   handleClick = () => {
     this.setState({
       clicked: !this.state.clicked
     });
+  };
+
+  timerHandler = e => {
+    this.setState({
+      timer: !this.state.timer
+    });
+    this.props.handleTimer(e, this.props.monologue);
   };
 
   render() {
@@ -50,6 +59,9 @@ export default class Monologue extends Component {
           >
             Delete Monologue
           </Button>
+          <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
+            Time Your Monologue
+          </Button>
         </ButtonToolbar>
       </div>
     );
@@ -66,6 +78,13 @@ export default class Monologue extends Component {
         </OverlayTrigger>
 
         {this.state.clicked ? fullMonologue : null}
+        {this.state.timer ? (
+          <Stopwatch
+            monologue={this.props.monologue}
+            handleClose={this.timerHandler}
+            handlePatch={this.props.handlePatch}
+          />
+        ) : null}
       </div>
     );
   }

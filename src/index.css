@@ -31,7 +31,7 @@ code {
   margin-top: 90px;
 }
 .buttons {
-  padding-left: 25%;
+  padding-left: 10%;
   margin: auto;
   margin-top: 20px;
 }
@@ -72,6 +72,29 @@ img {
   padding: 50px;
   position: relative;
   font-size: 20px;
+}
+
+.modal-content-stopwatch {
+  width: 600px;
+  top: -300px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 50px;
+  position: relative;
+  font-size: 20px;
+}
+
+#timer {
+  font-size: 50px;
+}
+
+#timer-buttons {
+  text-align: center;
+  padding: auto;
+  margin-left: 110px;
+  margin-top: 20px;
 }
 input {
   width: 75%;

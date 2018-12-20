@@ -23,24 +23,24 @@ export default class Header extends Component {
         >
           <Nav>
             <NavItem eventKey={1} href="#">
-              Link
+              My Monologues
             </NavItem>
             <NavItem eventKey={2} href="#">
-              Link
+              Share A Monologue
             </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
           </Nav>
           <Nav
             pullRight
             handleLogIn={this.props.handleLogIn}
             handleSignUp={this.props.handleSignUp}
           >
+            <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1}>Account</MenuItem>
+              <MenuItem eventKey={3.2}>Messages</MenuItem>
+              <MenuItem eventKey={3.3}>Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={3.3}>Separated link</MenuItem>
+            </NavDropdown>
             <NavItem onClick={this.props.handleSignUp}>Sign Up</NavItem>
             <NavItem onClick={this.props.handleLogIn}>Log In</NavItem>
           </Nav>

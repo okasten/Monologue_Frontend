@@ -8,7 +8,8 @@ export default class MonologueContainer extends Component {
     monologues: [],
     addClicked: false,
     editClicked: false,
-    currentMonologue: ""
+    currentMonologue: "",
+    timer: false
   };
 
   componentDidMount() {
@@ -32,7 +33,8 @@ export default class MonologueContainer extends Component {
         age: values.age,
         genre: values.genre,
         length: values.length,
-        script: values.script
+        script: values.script,
+        file: values.file
       })
     })
       .then(response => response.json())
@@ -65,7 +67,7 @@ export default class MonologueContainer extends Component {
 
   handlePatch = (e, values, monologue) => {
     fetch(`http://localhost:3000/monologues/${monologue.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
@@ -77,7 +79,7 @@ export default class MonologueContainer extends Component {
         newArray[monologue.id - 1] = monologue;
 
         this.setState({
-          editClicked: !this.state.editClicked,
+          editClicked: false,
           monologues: newArray
         });
       });
@@ -89,6 +91,12 @@ export default class MonologueContainer extends Component {
     });
   };
 
+  handleTimer = (e, monologue) => {
+    console.log("handle timer", monologue);
+    this.setState({
+      timer: !this.state.timer
+    });
+  };
   render() {
     let list = this.state.monologues.map(monologue => {
       return (
@@ -98,6 +106,8 @@ export default class MonologueContainer extends Component {
             monologue={monologue}
             handleDelete={this.handleDelete}
             handleEdit={this.handleEdit}
+            handleTimer={this.handleTimer}
+            handlePatch={this.handlePatch}
           />
           {this.state.editClicked ? (
             <Form

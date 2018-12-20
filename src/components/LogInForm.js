@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export default class LogInForm extends Component {
   state = {
@@ -28,7 +28,7 @@ export default class LogInForm extends Component {
           </div>
 
           {this.props.context === "logIn" ? (
-            <form onChange={this.handleChange}>
+            <Form horizontal onChange={this.handleChange}>
               <img
                 className="img-rounded"
                 alt="acting snl gif"
@@ -52,9 +52,9 @@ export default class LogInForm extends Component {
               <Button bsStyle="success" block className="log-in-button">
                 Log In
               </Button>
-            </form>
+            </Form>
           ) : (
-            <form onChange={this.handleChange}>
+            <Form horizontal onChange={this.handleChange}>
               <img
                 className="img-rounded"
                 alt="acting snl gif"
@@ -85,7 +85,7 @@ export default class LogInForm extends Component {
               <Button bsStyle="success" block className="sign-up-button">
                 Sign Up
               </Button>
-            </form>
+            </Form>
           )}
         </div>
       </div>

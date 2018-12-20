@@ -9,6 +9,7 @@ export default class Form extends Component {
     genre: this.props.currentMonologue.genre,
     length: this.props.currentMonologue.length,
     script: this.props.currentMonologue.script,
+    file: this.props.currentMonologue.file,
     clicked: false
   };
 
@@ -87,6 +88,14 @@ export default class Form extends Component {
               value={this.state.script}
               onChange={event => this.handleChange(event)}
             />
+            <br />
+            <input
+              id="formControlsFile"
+              type="file"
+              label="File"
+              help="Example block-level help text here."
+            />
+
             <br />
             <ButtonToolbar>
               <Button
