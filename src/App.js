@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Navbar.js";
 import MonologueContainer from "./containers/MonologueContainer.js";
 import LogInForm from "./components/LogInForm";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -31,6 +32,7 @@ class App extends Component {
           handleLogIn={this.handleLogIn}
           handleSignUp={this.handleSignUp}
         />
+
         {this.state.logIn ? (
           <LogInForm context="logIn" handleClose={this.handleLogIn} />
         ) : null}

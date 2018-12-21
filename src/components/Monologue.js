@@ -43,6 +43,9 @@ export default class Monologue extends Component {
 
     const fullMonologue = (
       <div className="monologue btn-center">
+        <h3>
+          {this.props.monologue.character} from {this.props.monologue.play}
+        </h3>
         <p>{this.props.monologue.script}</p>
         <ButtonToolbar className="buttons" bsStyle="text-center">
           <Button

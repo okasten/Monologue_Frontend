@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   render() {
@@ -13,7 +14,7 @@ export default class Header extends Component {
       >
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#brand">The Thespian's Monologue Journal</a>
+            <a href="#brand">The Actor's Monologue Journal</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -41,8 +42,13 @@ export default class Header extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.3}>Separated link</MenuItem>
             </NavDropdown>
-            <NavItem onClick={this.props.handleSignUp}>Sign Up</NavItem>
-            <NavItem onClick={this.props.handleLogIn}>Log In</NavItem>
+            <NavItem onClick={this.props.handleSignUp}>
+              <Link to="/signup">Sign Up</Link>
+            </NavItem>
+
+            <NavItem onClick={this.props.handleLogIn}>
+              <Link to="/login">Log In</Link>
+            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

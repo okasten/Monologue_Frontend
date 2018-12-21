@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class LogInForm extends Component {
   state = {
@@ -19,12 +20,14 @@ export default class LogInForm extends Component {
       <div className="bg-modal">
         <div className="modal-content">
           {this.props.context === "logIn" ? (
-            <h2>Welcome back, Thespian!</h2>
+            <h2>Welcome back!</h2>
           ) : (
             <h2>Welcome, Thespian!</h2>
           )}
-          <div className="close" onClick={this.props.handleClose}>
-            +
+          <div onClick={this.props.handleClose}>
+            <Link to="/" className="close">
+              +
+            </Link>
           </div>
 
           {this.props.context === "logIn" ? (
@@ -60,7 +63,7 @@ export default class LogInForm extends Component {
                 alt="acting snl gif"
                 src="http://media.giphy.com/media/1LiryotCCtd7y/giphy.gif"
               />
-              <h3>Log In</h3>
+              <h3>Sign Up</h3>
               Username:{" "}
               <input
                 type="text"
