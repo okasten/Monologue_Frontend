@@ -3,13 +3,31 @@ import "./App.css";
 import Header from "./components/Navbar.js";
 import MonologueContainer from "./containers/MonologueContainer.js";
 import LogInForm from "./components/LogInForm";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 class App extends Component {
   state = {
     logIn: false,
-    signUp: false
+    signUp: false,
+    user: null
   };
+
+  componentDidMount() {
+    if (localStorage.length > 0) {
+      let token = localStorage.getItem("token");
+
+      fetch("http://localhost:3000/api/v1/current_user/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Action: "application/json",
+          Authorization: `${token}`
+        }
+      });
+    } else {
+      return <h1>Please log in</h1>;
+    }
+  }
 
   handleLogIn = () => {
     this.setState({
@@ -24,6 +42,66 @@ class App extends Component {
     });
   };
 
+  signUpFormSubmitHandler = (e, user) => {
+    e.preventDefault();
+    this.createuser(user);
+    this.props.history.push("/");
+  };
+
+  logInFormSubmitHandler = (e, user) => {
+    e.preventDefault();
+    this.getUser(user);
+    this.props.history.push("/");
+  };
+
+  createuser = user => {
+    fetch("http://localhost:3000/api/v1/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          username: user.username,
+          password: user.password,
+          email: user.email
+        }
+      })
+    })
+      .then(response => response.json())
+      .then(resp => {
+        localStorage.setItem("token", resp.jwt);
+        this.setState({
+          user: resp.user,
+          signUp: !this.state.signUp
+        });
+      });
+  };
+
+  getUser = user => {
+    fetch("http://localhost:3000/api/v1/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          username: user.username,
+          password: user.password
+        }
+      })
+    })
+      .then(resp => resp.json())
+      .then(resp => {
+        localStorage.setItem("token", resp.jwt);
+        this.setState({
+          user: resp.user
+        });
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -34,10 +112,18 @@ class App extends Component {
         />
 
         {this.state.logIn ? (
-          <LogInForm context="logIn" handleClose={this.handleLogIn} />
+          <LogInForm
+            context="logIn"
+            handleClose={this.handleLogIn}
+            logInFormSubmitHandler={this.logInFormSubmitHandler}
+          />
         ) : null}
         {this.state.signUp ? (
-          <LogInForm context="signUp" handleClose={this.handleSignUp} />
+          <LogInForm
+            context="signUp"
+            handleClose={this.handleSignUp}
+            signUpFormSubmitHandler={this.signUpFormSubmitHandler}
+          />
         ) : null}
         <MonologueContainer className="monologueContainer" />
       </div>
@@ -45,4 +131,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

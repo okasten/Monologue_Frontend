@@ -52,7 +52,12 @@ export default class LogInForm extends Component {
                 placeholder="Password"
                 value={this.state.password}
               />
-              <Button bsStyle="success" block className="log-in-button">
+              <Button
+                bsStyle="success"
+                block
+                className="log-in-button"
+                onClick={e => this.props.logInFormSubmitHandler(e, this.state)}
+              >
                 Log In
               </Button>
             </Form>
@@ -85,7 +90,12 @@ export default class LogInForm extends Component {
                 placeholder="Password"
                 value={this.state.password}
               />
-              <Button bsStyle="success" block className="sign-up-button">
+              <Button
+                bsStyle="success"
+                block
+                className="sign-up-button"
+                onClick={e => this.props.signUpFormSubmitHandler(e, this.state)}
+              >
                 Sign Up
               </Button>
             </Form>

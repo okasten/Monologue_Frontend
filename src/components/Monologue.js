@@ -75,7 +75,7 @@ export default class Monologue extends Component {
           placement="bottom"
           overlay={popoverHoverFocus}
         >
-          <h3 onClick={this.handleClick}>
+          <h3 className="title" onClick={this.handleClick}>
             {this.props.monologue.character} from {this.props.monologue.play}
           </h3>
         </OverlayTrigger>
