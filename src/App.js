@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     logIn: false,
     signUp: false,
-    user: null
+    current_user: null
   };
 
   componentDidMount() {
@@ -23,7 +23,9 @@ class App extends Component {
           Action: "application/json",
           Authorization: `${token}`
         }
-      });
+      })
+        .then(response => response.json())
+        .then(console.log);
     } else {
       return <h1>Please log in</h1>;
     }
@@ -125,7 +127,10 @@ class App extends Component {
             signUpFormSubmitHandler={this.signUpFormSubmitHandler}
           />
         ) : null}
-        <MonologueContainer className="monologueContainer" />
+        <MonologueContainer
+          current_user={this.state.current_user}
+          className="monologueContainer"
+        />
       </div>
     );
   }

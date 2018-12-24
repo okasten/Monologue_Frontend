@@ -13,13 +13,14 @@ export default class MonologueContainer extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/monologues")
-      .then(response => response.json())
-      .then(monologues => {
-        this.setState({
-          monologues: monologues
+    if (this.props.current_user !== null)
+      fetch("http://localhost:3000/monologues")
+        .then(response => response.json())
+        .then(monologues => {
+          this.setState({
+            monologues: monologues
+          });
         });
-      });
   }
   handleSubmit = (e, values) => {
     e.preventDefault();
