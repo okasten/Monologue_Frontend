@@ -3,7 +3,9 @@ import {
   Popover,
   OverlayTrigger,
   Button,
-  ButtonToolbar
+  ButtonToolbar,
+  Col,
+  Grid
 } from "react-bootstrap";
 import Stopwatch from "./Stopwatch";
 
@@ -42,31 +44,33 @@ export default class Monologue extends Component {
     );
 
     const fullMonologue = (
-      <div className="monologue btn-center">
-        <h3>
-          {this.props.monologue.character} from {this.props.monologue.play}
-        </h3>
-        <p>{this.props.monologue.script}</p>
-        <ButtonToolbar className="buttons" bsStyle="text-center">
-          <Button
-            bsSize="small"
-            bsStyle="warning"
-            onClick={e => this.props.handleEdit(e, this.props.monologue)}
-          >
-            Edit Monologue
-          </Button>
-          <Button
-            bsSize="small"
-            bsStyle="danger"
-            onClick={e => this.props.handleDelete(e, this.props.monologue)}
-          >
-            Delete Monologue
-          </Button>
-          <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
-            Time Your Monologue
-          </Button>
-        </ButtonToolbar>
-      </div>
+      <Grid>
+        <Col mdPush={6} md={8} className="monologue btn-center">
+          <h3>
+            {this.props.monologue.character} from {this.props.monologue.play}
+          </h3>
+          <p>{this.props.monologue.script}</p>
+          <ButtonToolbar className="buttons" bsStyle="text-center">
+            <Button
+              bsSize="small"
+              bsStyle="warning"
+              onClick={e => this.props.handleEdit(e, this.props.monologue)}
+            >
+              Edit Monologue
+            </Button>
+            <Button
+              bsSize="small"
+              bsStyle="danger"
+              onClick={e => this.props.handleDelete(e, this.props.monologue)}
+            >
+              Delete Monologue
+            </Button>
+            <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
+              Time Your Monologue
+            </Button>
+          </ButtonToolbar>
+        </Col>
+      </Grid>
     );
     return (
       <div>

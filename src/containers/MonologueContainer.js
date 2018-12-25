@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Grid, Col } from "react-bootstrap";
 import Form from "../components/Form.js";
 import Monologue from "../components/Monologue.js";
 
@@ -122,17 +122,19 @@ export default class MonologueContainer extends Component {
       );
     });
     return (
-      <div>
+      <Grid>
         <br />
         <h1 className="pageHeader"> Monologue Repertoire </h1>
-        {list}
-        <Button
-          bsStyle="primary"
-          className="button"
-          onClick={this.addMonologue}
-        >
-          Add A New Monologue
-        </Button>
+        <Col xs={6} md={6}>
+          {list}
+          <Button
+            bsStyle="primary"
+            className="button"
+            onClick={this.addMonologue}
+          >
+            Add A New Monologue
+          </Button>
+        </Col>
         {this.state.addClicked ? (
           <Form
             handleSubmit={this.handleSubmit}
@@ -140,7 +142,7 @@ export default class MonologueContainer extends Component {
             currentMonologue={""}
           />
         ) : null}
-      </div>
+      </Grid>
     );
   }
 }

@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     logIn: false,
     signUp: false,
-    current_user: null
+    current_user: ""
   };
 
   componentDidMount() {
