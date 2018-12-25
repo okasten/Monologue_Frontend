@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     logIn: false,
     signUp: false,
-    current_user: ""
+    current_user: null
   };
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class App extends Component {
       })
         .then(response => response.json())
         .then(user => {
-          console.log(user);
+          console.log("User", user);
           this.setState({
             current_user: user
           });
@@ -99,13 +99,13 @@ class App extends Component {
       body: JSON.stringify({
         user: {
           username: user.username,
-          password: user.password,
-          current_user: user
+          password: user.password
         }
       })
     })
       .then(resp => resp.json())
       .then(resp => {
+        console.log("respnonse from login", resp);
         localStorage.setItem("token", resp.jwt);
         this.setState({
           current_user: resp.user
