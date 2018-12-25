@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Navbar.js";
 import MonologueContainer from "./containers/MonologueContainer.js";
 import LogInForm from "./components/LogInForm";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -25,9 +25,16 @@ class App extends Component {
         }
       })
         .then(response => response.json())
-        .then(console.log);
+        .then(user => {
+          console.log(user);
+          this.setState({
+            current_user: user
+          });
+        });
     } else {
-      return <h1>Please log in</h1>;
+      this.setState({
+        logIn: true
+      });
     }
   }
 
@@ -67,7 +74,8 @@ class App extends Component {
         user: {
           username: user.username,
           password: user.password,
-          email: user.email
+          email: user.email,
+          current_user: user
         }
       })
     })
@@ -75,8 +83,8 @@ class App extends Component {
       .then(resp => {
         localStorage.setItem("token", resp.jwt);
         this.setState({
-          user: resp.user,
-          signUp: !this.state.signUp
+          signUp: !this.state.signUp,
+          current_user: resp.user
         });
       });
   };
@@ -91,7 +99,8 @@ class App extends Component {
       body: JSON.stringify({
         user: {
           username: user.username,
-          password: user.password
+          password: user.password,
+          current_user: user
         }
       })
     })
@@ -99,9 +108,17 @@ class App extends Component {
       .then(resp => {
         localStorage.setItem("token", resp.jwt);
         this.setState({
-          user: resp.user
+          current_user: resp.user
         });
       });
+  };
+
+  handleLogOut = () => {
+    console.log("logOut");
+    localStorage.removeItem("token");
+    this.setState({
+      current_user: null
+    });
   };
 
   render() {
@@ -111,6 +128,8 @@ class App extends Component {
           className="Header"
           handleLogIn={this.handleLogIn}
           handleSignUp={this.handleSignUp}
+          current_user={this.state.current_user}
+          handleLogOut={this.handleLogOut}
         />
 
         {this.state.logIn ? (
@@ -118,6 +137,7 @@ class App extends Component {
             context="logIn"
             handleClose={this.handleLogIn}
             logInFormSubmitHandler={this.logInFormSubmitHandler}
+            current_user={this.state.current_user}
           />
         ) : null}
         {this.state.signUp ? (
@@ -125,6 +145,7 @@ class App extends Component {
             context="signUp"
             handleClose={this.handleSignUp}
             signUpFormSubmitHandler={this.signUpFormSubmitHandler}
+            current_user={this.state.current_user}
           />
         ) : null}
         <MonologueContainer
