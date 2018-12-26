@@ -39,14 +39,6 @@ export default class Header extends Component {
             handleSignUp={this.props.handleSignUp}
             handleLogOut={this.props.handleLogOut}
           >
-            <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Account</MenuItem>
-              <MenuItem eventKey={3.2}>Messages</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-
             {!this.props.current_user ? (
               <React.Fragment>
                 <NavItem onClick={this.props.handleSignUp}>
@@ -58,9 +50,22 @@ export default class Header extends Component {
                 </NavItem>
               </React.Fragment>
             ) : (
-              <NavItem onClick={this.props.handleLogOut}>
-                <Link to="/">Log Out </Link>
-              </NavItem>
+              <React.Fragment>
+                <NavDropdown
+                  eventKey={3}
+                  title="Profile"
+                  id="basic-nav-dropdown"
+                >
+                  <MenuItem eventKey={3.1}>Account</MenuItem>
+                  <MenuItem eventKey={3.2}>Messages</MenuItem>
+                  <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                  <MenuItem divider />
+                  <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                </NavDropdown>
+                <NavItem onClick={this.props.handleLogOut}>
+                  <Link to="/">Log Out </Link>
+                </NavItem>
+              </React.Fragment>
             )}
           </Nav>
         </Navbar.Collapse>

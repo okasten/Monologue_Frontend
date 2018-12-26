@@ -9,26 +9,26 @@ class App extends Component {
   state = {
     logIn: false,
     signUp: false,
-    current_user: null
+    user: ""
   };
 
   componentDidMount() {
     if (localStorage.length > 0) {
       let token = localStorage.getItem("token");
 
-      fetch("http://localhost:3000/api/v1/current_user/", {
+      fetch("http://localhost:3000/api/v1/profile/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Action: "application/json",
-          Authorization: `${token}`
+          Authorization: `Bearer ${token}`
         }
       })
         .then(response => response.json())
         .then(user => {
           console.log("User", user);
           this.setState({
-            current_user: user
+            user: user
           });
         });
     } else {
@@ -51,45 +51,44 @@ class App extends Component {
     });
   };
 
-  signUpFormSubmitHandler = (e, user) => {
+  signUpFormSubmitHandler = (e, userInfo) => {
     e.preventDefault();
-    this.createuser(user);
+    this.createUser(userInfo);
     this.props.history.push("/");
   };
 
-  logInFormSubmitHandler = (e, user) => {
+  logInFormSubmitHandler = (e, userInfo) => {
     e.preventDefault();
-    this.getUser(user);
+    this.getUser(userInfo);
     this.props.history.push("/");
   };
 
-  createuser = user => {
+  createUser = userInfo => {
     fetch("http://localhost:3000/api/v1/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accepts: "application/json"
+        Accept: "application/json"
       },
       body: JSON.stringify({
         user: {
-          username: user.username,
-          password: user.password,
-          email: user.email,
-          current_user: user
+          username: userInfo.loginUsername,
+          password: userInfo.loginPassword,
+          email: userInfo.loginEmail
         }
       })
     })
       .then(response => response.json())
       .then(resp => {
-        localStorage.setItem("token", resp.jwt);
+        console.log(resp);
         this.setState({
-          signUp: !this.state.signUp,
-          current_user: resp.user
+          user: resp.user,
+          signUp: false
         });
       });
   };
 
-  getUser = user => {
+  getUser = userInfo => {
     fetch("http://localhost:3000/api/v1/login/", {
       method: "POST",
       headers: {
@@ -98,8 +97,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         user: {
-          username: user.username,
-          password: user.password
+          username: userInfo.loginUsername,
+          password: userInfo.loginPassword
         }
       })
     })
@@ -108,7 +107,8 @@ class App extends Component {
         console.log("respnonse from login", resp);
         localStorage.setItem("token", resp.jwt);
         this.setState({
-          current_user: resp.user
+          user: resp.user,
+          logIn: false
         });
       });
   };
@@ -117,7 +117,7 @@ class App extends Component {
     console.log("logOut");
     localStorage.removeItem("token");
     this.setState({
-      current_user: null
+      user: null
     });
   };
 
@@ -128,7 +128,7 @@ class App extends Component {
           className="Header"
           handleLogIn={this.handleLogIn}
           handleSignUp={this.handleSignUp}
-          current_user={this.state.current_user}
+          current_user={this.state.user}
           handleLogOut={this.handleLogOut}
         />
 
@@ -137,7 +137,7 @@ class App extends Component {
             context="logIn"
             handleClose={this.handleLogIn}
             logInFormSubmitHandler={this.logInFormSubmitHandler}
-            current_user={this.state.current_user}
+            current_user={this.state.user}
           />
         ) : null}
         {this.state.signUp ? (
@@ -145,11 +145,11 @@ class App extends Component {
             context="signUp"
             handleClose={this.handleSignUp}
             signUpFormSubmitHandler={this.signUpFormSubmitHandler}
-            current_user={this.state.current_user}
+            current_user={this.state.user}
           />
         ) : null}
         <MonologueContainer
-          current_user={this.state.current_user}
+          current_user={this.state.user}
           className="monologueContainer"
         />
       </div>

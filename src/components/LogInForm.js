@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export default class LogInForm extends Component {
   state = {
-    username: "",
-    password: "",
-    email: ""
+    loginUsername: "",
+    loginPassword: "",
+    loginEmail: ""
   };
 
   handleChange = e => {
@@ -41,16 +41,16 @@ export default class LogInForm extends Component {
               Username:{" "}
               <input
                 type="text"
-                name="username"
+                name="loginUsername"
                 placeholder="Username"
-                value={this.state.username}
+                value={this.state.loginUsername}
               />
               Password:{" "}
               <input
                 type="text"
-                name="password"
+                name="loginPassword"
                 placeholder="Password"
-                value={this.state.password}
+                value={this.state.loginPassword}
               />
               <Button
                 bsStyle="success"
@@ -72,23 +72,23 @@ export default class LogInForm extends Component {
               Username:{" "}
               <input
                 type="text"
-                name="username"
+                name="loginUsername"
                 placeholder="Username"
-                value={this.state.username}
+                value={this.state.loginUsername}
               />
               Email:{" "}
               <input
                 type="text"
-                name="email"
+                name="loginEmail"
                 placeholder="Email"
-                value={this.state.email}
+                value={this.state.loginEmail}
               />
               Password:{" "}
               <input
                 type="text"
-                name="password"
+                name="loginPassword"
                 placeholder="Password"
-                value={this.state.password}
+                value={this.state.loginPassword}
               />
               <Button
                 bsStyle="success"
