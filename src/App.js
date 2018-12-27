@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Navbar.js";
-import MonologueContainer from "./containers/MonologueContainer.js";
 import LogInForm from "./components/LogInForm";
 import { withRouter } from "react-router-dom";
 
@@ -148,10 +147,6 @@ class App extends Component {
             current_user={this.state.user}
           />
         ) : null}
-        <MonologueContainer
-          current_user={this.state.user}
-          className="monologueContainer"
-        />
       </div>
     );
   }

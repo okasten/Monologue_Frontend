@@ -13,20 +13,17 @@ export default class MonologueContainer extends Component {
   };
 
   componentDidMount() {
-    if (this.props.current_user !== null) {
-      fetch("http://localhost:3000/monologues")
-        .then(response => response.json())
-        .then(monologues => {
-          console.log(monologues);
-          this.setState({
-            monologues: monologues
-          });
+    fetch("http://localhost:3000/monologues")
+      .then(response => response.json())
+      .then(monologues => {
+        console.log(monologues);
+        this.setState({
+          monologues: monologues
         });
-    }
+      });
   }
   handleSubmit = (e, values) => {
     e.preventDefault();
-
     fetch("http://localhost:3000/monologues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,6 +66,7 @@ export default class MonologueContainer extends Component {
   };
 
   handlePatch = (e, values, monologue) => {
+    console.log(monologue);
     fetch(`http://localhost:3000/monologues/${monologue.id}`, {
       method: "PATCH",
       headers: {
@@ -103,7 +101,7 @@ export default class MonologueContainer extends Component {
   render() {
     let list = this.state.monologues.map(monologue => {
       return (
-        <div className="individualMonologues">
+        <div key={monologue.id} className="individualMonologues">
           <Monologue
             key={monologue.play}
             monologue={monologue}
