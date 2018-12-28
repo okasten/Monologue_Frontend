@@ -38,7 +38,11 @@ export default class Header extends Component {
             handleLogOut={this.props.handleLogOut}
           >
             <Nav>
-              <NavItem onClick={this.goToMonologues} href="#">
+              <NavItem
+                onClick={this.goToMonologues}
+                current_user={this.props.current_user}
+                href="#"
+              >
                 My Monologues
               </NavItem>
               <NavItem eventKey={2} href="#">

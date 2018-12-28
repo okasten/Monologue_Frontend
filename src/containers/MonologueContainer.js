@@ -13,7 +13,12 @@ export default class MonologueContainer extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/monologues")
+    console.log(this.props.current_user.user.id);
+    fetch(
+      `http://localhost:3000/api/v1/users/${
+        this.props.current_user.user.id
+      }/monologues`
+    )
       .then(response => response.json())
       .then(monologues => {
         console.log(monologues);
