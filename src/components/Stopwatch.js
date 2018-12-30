@@ -50,7 +50,7 @@ export default class Stopwatch extends Component {
 
   render() {
     return (
-      <div className="bg-modal">
+      <div className="bg-modal-stopwatch">
         <div className="modal-content-stopwatch">
           <div className="close" onClick={this.props.handleClose}>
             +

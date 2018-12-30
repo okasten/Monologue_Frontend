@@ -83,7 +83,8 @@ export default class MonologueContainer extends Component {
 
     let newArray = this.state.monologues.filter(mono => mono !== monologue);
     this.setState({
-      monologues: newArray
+      monologues: newArray,
+      showSingleMonologue: !this.state.showSingleMonologue
     });
   };
 
@@ -109,7 +110,8 @@ export default class MonologueContainer extends Component {
 
         this.setState({
           editClicked: false,
-          monologues: newArray
+          monologues: newArray,
+          showSingleMonologue: !this.state.showSingleMonologue
         });
       });
   };
@@ -131,6 +133,12 @@ export default class MonologueContainer extends Component {
     this.setState({
       currentMonologue: monologue,
       showSingleMonologue: !this.state.showSingleMonologue
+    });
+  };
+
+  closeEdit = () => {
+    this.setState({
+      editClicked: !this.state.editClicked
     });
   };
   render() {
@@ -189,6 +197,13 @@ export default class MonologueContainer extends Component {
             handleSubmit={this.handleSubmit}
             handleClose={this.addMonologue}
             currentMonologue={""}
+          />
+        ) : null}
+        {this.state.editClicked ? (
+          <Form
+            currentMonologue={this.state.currentMonologue}
+            handleSubmit={this.handlePatch}
+            handleClose={this.closeEdit}
           />
         ) : null}
       </Grid>
