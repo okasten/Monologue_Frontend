@@ -18,7 +18,7 @@ export default class LogInForm extends Component {
   render() {
     return (
       <div className="bg-modal">
-        <div className="modal-content">
+        <div className="modal-content-login">
           {this.props.context === "logIn" ? (
             <h2>Welcome back!</h2>
           ) : (

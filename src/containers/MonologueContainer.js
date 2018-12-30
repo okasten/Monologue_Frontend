@@ -170,7 +170,7 @@ export default class MonologueContainer extends Component {
         <br />
         <h1 className="pageHeader"> Monologue Repertoire </h1>
         <Row>
-          <Col xs={6} md={4}>
+          <Col xs={4} md={4}>
             {list}
             <Button
               bsStyle="primary"
@@ -180,7 +180,7 @@ export default class MonologueContainer extends Component {
               Add A New Monologue
             </Button>
           </Col>
-          <Col xs={12} md={8}>
+          <Col xs={16} md={8} className="showMonologue">
             {this.state.showSingleMonologue ? (
               <Monologue
                 monologue={this.state.currentMonologue}

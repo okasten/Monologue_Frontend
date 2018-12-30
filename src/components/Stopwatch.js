@@ -55,6 +55,11 @@ export default class Stopwatch extends Component {
           <div className="close" onClick={this.props.handleClose}>
             +
           </div>
+          <h2>
+            {" "}
+            Timing {this.props.monologue.character} from{" "}
+            {this.props.monologue.play}
+          </h2>
           <label id="timer"> {this.state.time}s </label>
           <ButtonToolbar id="timer-buttons">
             {this.state.running ? (
