@@ -49,7 +49,6 @@ export default class MonologueContainer extends Component {
     )
       .then(response => response.json())
       .then(monologue => {
-        debugger;
         let newArray = [...this.state.monologues, monologue];
         this.setState({
           monologues: newArray,
@@ -59,8 +58,6 @@ export default class MonologueContainer extends Component {
   };
 
   handleEdit = (e, monologue) => {
-    debugger;
-
     this.setState({
       editClicked: !this.state.editClicked,
       currentMonologue: monologue
@@ -98,11 +95,12 @@ export default class MonologueContainer extends Component {
       }
     )
       .then(response => response.json())
-      .then(monologue => {
-        debugger;
+      .then(resmonologue => {
         // let spliced = [...this.state.monologues].splice()
         let newArray = [...this.state.monologues];
-        newArray[monologue.id] = monologue;
+        let oldMonologue = newArray.indexOf(monologue);
+        debugger;
+        newArray[oldMonologue] = resmonologue;
 
         this.setState({
           editClicked: false,
