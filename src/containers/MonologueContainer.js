@@ -13,11 +13,11 @@ export default class MonologueContainer extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.current_user.user.id);
+    console.log(this.props.current_user.id);
     fetch(
       `http://localhost:3000/api/v1/users/${
-        this.props.current_user.user.id
-      }/monologues`
+        this.props.current_user.id
+      }/usermonologues`
     )
       .then(response => response.json())
       .then(monologues => {
@@ -29,21 +29,27 @@ export default class MonologueContainer extends Component {
   }
   handleSubmit = (e, values) => {
     e.preventDefault();
-    fetch("http://localhost:3000/monologues", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        character: values.character,
-        play: values.play,
-        age: values.age,
-        genre: values.genre,
-        length: values.length,
-        script: values.script,
-        file: values.file
-      })
-    })
+    fetch(
+      `http://localhost:3000/api/v1/users/${
+        this.props.current_user.id
+      }/usermonologues`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          character: values.character,
+          play: values.play,
+          age: values.age,
+          genre: values.genre,
+          length: values.length,
+          script: values.script,
+          file: values.file
+        })
+      }
+    )
       .then(response => response.json())
       .then(monologue => {
+        debugger;
         let newArray = [...this.state.monologues, monologue];
         this.setState({
           monologues: newArray,
@@ -53,6 +59,8 @@ export default class MonologueContainer extends Component {
   };
 
   handleEdit = (e, monologue) => {
+    debugger;
+
     this.setState({
       editClicked: !this.state.editClicked,
       currentMonologue: monologue
@@ -60,9 +68,14 @@ export default class MonologueContainer extends Component {
   };
 
   handleDelete = (e, monologue) => {
-    fetch(`http://localhost:3000/monologues/${monologue.id}`, {
-      method: "DELETE"
-    });
+    fetch(
+      `http://localhost:3000/api/v1/users/${
+        this.props.current_user.id
+      }/usermonologues/${monologue.id}`,
+      {
+        method: "DELETE"
+      }
+    );
 
     let newArray = this.state.monologues.filter(mono => mono !== monologue);
     this.setState({
@@ -72,17 +85,24 @@ export default class MonologueContainer extends Component {
 
   handlePatch = (e, values, monologue) => {
     console.log(monologue);
-    fetch(`http://localhost:3000/monologues/${monologue.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(values)
-    })
+    fetch(
+      `http://localhost:3000/api/v1/users/${
+        this.props.current_user.id
+      }/usermonologues/${monologue.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      }
+    )
       .then(response => response.json())
       .then(monologue => {
+        debugger;
+        // let spliced = [...this.state.monologues].splice()
         let newArray = [...this.state.monologues];
-        newArray[monologue.id - 1] = monologue;
+        newArray[monologue.id] = monologue;
 
         this.setState({
           editClicked: false,
@@ -104,9 +124,9 @@ export default class MonologueContainer extends Component {
     });
   };
   render() {
-    let list = this.state.monologues.map(monologue => {
+    let list = this.state.monologues.map((monologue, i) => {
       return (
-        <div key={monologue.id} className="individualMonologues">
+        <div key={i} className="individualMonologues">
           <Monologue
             key={monologue.play}
             monologue={monologue}

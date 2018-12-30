@@ -27,7 +27,7 @@ class App extends Component {
         .then(user => {
           console.log("User", user);
           this.setState({
-            user: user
+            user: user.user
           });
         });
     } else {
