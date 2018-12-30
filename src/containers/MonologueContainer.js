@@ -65,6 +65,7 @@ export default class MonologueContainer extends Component {
   };
 
   handleDelete = (e, monologue) => {
+    e.preventDefault();
     fetch(
       `http://localhost:3000/api/v1/users/${
         this.props.current_user.id
