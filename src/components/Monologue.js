@@ -11,14 +11,7 @@ import Stopwatch from "./Stopwatch";
 
 export default class Monologue extends Component {
   state = {
-    clicked: false,
     timer: false
-  };
-
-  handleClick = () => {
-    this.setState({
-      clicked: !this.state.clicked
-    });
   };
 
   timerHandler = e => {
@@ -29,62 +22,51 @@ export default class Monologue extends Component {
   };
 
   render() {
-    const popoverHoverFocus = (
-      <Popover
-        id="popover-trigger-hover-focus"
-        title={this.props.monologue.character}
-      >
-        <strong>Genre: </strong>
-        {this.props.monologue.genre} <br />
-        <strong>Age: </strong>
-        {this.props.monologue.age} <br />
-        <strong>Length: </strong>
-        {this.props.monologue.length}
-      </Popover>
-    );
+    // const popoverHoverFocus = (
+    //   <Popover
+    //     id="popover-trigger-hover-focus"
+    //     title={this.props.monologue.character}
+    //   >
+    //     <strong>Genre: </strong>
+    //     {this.props.monologue.genre} <br />
+    //     <strong>Age: </strong>
+    //     {this.props.monologue.age} <br />
+    //     <strong>Length: </strong>
+    //     {this.props.monologue.length}
+    //   </Popover>
+    // );
 
     const fullMonologue = (
-      <Grid>
-        <Col mdPush={6} md={8} className="monologue btn-center">
-          <h3>
-            {this.props.monologue.character} from {this.props.monologue.play}
-          </h3>
-          <p>{this.props.monologue.script}</p>
-          <ButtonToolbar className="buttons" bsStyle="text-center">
-            <Button
-              bsSize="small"
-              bsStyle="warning"
-              onClick={e => this.props.handleEdit(e, this.props.monologue)}
-            >
-              Edit Monologue
-            </Button>
-            <Button
-              bsSize="small"
-              bsStyle="danger"
-              onClick={e => this.props.handleDelete(e, this.props.monologue)}
-            >
-              Delete Monologue
-            </Button>
-            <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
-              Time Your Monologue
-            </Button>
-          </ButtonToolbar>
-        </Col>
-      </Grid>
+      <Col xs={6} xsOffset={6} className="monologue btn-center">
+        <h3>
+          {this.props.monologue.character} from {this.props.monologue.play}
+        </h3>
+        <p>{this.props.monologue.script}</p>
+        <ButtonToolbar className="buttons" bsStyle="text-center">
+          <Button
+            bsSize="small"
+            bsStyle="warning"
+            onClick={e => this.props.handleEdit(e, this.props.monologue)}
+          >
+            Edit Monologue
+          </Button>
+          <Button
+            bsSize="small"
+            bsStyle="danger"
+            onClick={e => this.props.handleDelete(e, this.props.monologue)}
+          >
+            Delete Monologue
+          </Button>
+          <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
+            Time Your Monologue
+          </Button>
+        </ButtonToolbar>
+      </Col>
     );
     return (
       <div>
-        <OverlayTrigger
-          trigger={["hover", "focus"]}
-          placement="bottom"
-          overlay={popoverHoverFocus}
-        >
-          <h3 className="title" onClick={this.handleClick}>
-            {this.props.monologue.character} from {this.props.monologue.play}
-          </h3>
-        </OverlayTrigger>
+        {fullMonologue}
 
-        {this.state.clicked ? fullMonologue : null}
         {this.state.timer ? (
           <Stopwatch
             monologue={this.props.monologue}

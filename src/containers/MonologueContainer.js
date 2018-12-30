@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, Grid, Col } from "react-bootstrap";
+import {
+  Button,
+  Grid,
+  Col,
+  Row,
+  Popover,
+  OverlayTrigger
+} from "react-bootstrap";
 import Form from "../components/Form.js";
 import Monologue from "../components/Monologue.js";
 
@@ -9,11 +16,11 @@ export default class MonologueContainer extends Component {
     addClicked: false,
     editClicked: false,
     currentMonologue: "",
+    showSingleMonologue: false,
     timer: false
   };
 
   componentDidMount() {
-    console.log(this.props.current_user.id);
     fetch(
       `http://localhost:3000/api/v1/users/${
         this.props.current_user.id
@@ -21,7 +28,6 @@ export default class MonologueContainer extends Component {
     )
       .then(response => response.json())
       .then(monologues => {
-        console.log(monologues);
         this.setState({
           monologues: monologues
         });
@@ -82,7 +88,6 @@ export default class MonologueContainer extends Component {
   };
 
   handlePatch = (e, values, monologue) => {
-    console.log(monologue);
     fetch(
       `http://localhost:3000/api/v1/users/${
         this.props.current_user.id
@@ -97,10 +102,9 @@ export default class MonologueContainer extends Component {
     )
       .then(response => response.json())
       .then(resmonologue => {
-        // let spliced = [...this.state.monologues].splice()
         let newArray = [...this.state.monologues];
         let oldMonologue = newArray.indexOf(monologue);
-        debugger;
+
         newArray[oldMonologue] = resmonologue;
 
         this.setState({
@@ -122,43 +126,64 @@ export default class MonologueContainer extends Component {
       timer: !this.state.timer
     });
   };
+
+  handleClick = monologue => {
+    this.setState({
+      currentMonologue: monologue,
+      showSingleMonologue: !this.state.showSingleMonologue
+    });
+  };
   render() {
     let list = this.state.monologues.map((monologue, i) => {
+      const popoverHoverFocus = (
+        <Popover id="popover-trigger-hover-focus" title={monologue.character}>
+          <strong>Genre: </strong>
+          {monologue.genre} <br />
+          <strong>Age: </strong>
+          {monologue.age} <br />
+          <strong>Length: </strong>
+          {monologue.length}
+        </Popover>
+      );
       return (
-        <div key={i} className="individualMonologues">
-          <Monologue
-            key={monologue.play}
-            monologue={monologue}
-            handleDelete={this.handleDelete}
-            handleEdit={this.handleEdit}
-            handleTimer={this.handleTimer}
-            handlePatch={this.handlePatch}
-          />
-          {this.state.editClicked ? (
-            <Form
-              handleSubmit={this.handlePatch}
-              handleClose={this.handleEdit}
-              context="edit"
-              currentMonologue={this.state.currentMonologue}
-            />
-          ) : null}
-        </div>
+        <OverlayTrigger
+          trigger={["hover", "focus"]}
+          placement="bottom"
+          overlay={popoverHoverFocus}
+        >
+          <h3 className="title" onClick={() => this.handleClick(monologue)}>
+            {monologue.character} from {monologue.play}
+          </h3>
+        </OverlayTrigger>
       );
     });
     return (
       <Grid>
         <br />
         <h1 className="pageHeader"> Monologue Repertoire </h1>
-        <Col xs={6} md={6}>
-          {list}
-          <Button
-            bsStyle="primary"
-            className="button"
-            onClick={this.addMonologue}
-          >
-            Add A New Monologue
-          </Button>
-        </Col>
+        <Row>
+          <Col xs={6} md={4}>
+            {list}
+            <Button
+              bsStyle="primary"
+              className="button"
+              onClick={this.addMonologue}
+            >
+              Add A New Monologue
+            </Button>
+          </Col>
+          <Col xs={12} md={8}>
+            {this.state.showSingleMonologue ? (
+              <Monologue
+                monologue={this.state.currentMonologue}
+                handleDelete={this.handleDelete}
+                handleEdit={this.handleEdit}
+                handleTimer={this.handleTimer}
+                handlePatch={this.handlePatch}
+              />
+            ) : null}
+          </Col>
+        </Row>
         {this.state.addClicked ? (
           <Form
             handleSubmit={this.handleSubmit}
