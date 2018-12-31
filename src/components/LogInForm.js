@@ -17,7 +17,7 @@ export default class LogInForm extends Component {
 
   render() {
     return (
-      <div className="bg-modal">
+      <div className="bg-modal-login">
         <div className="modal-content-login">
           {this.props.context === "logIn" ? (
             <h2>Welcome back!</h2>
@@ -47,7 +47,7 @@ export default class LogInForm extends Component {
               />
               Password:{" "}
               <input
-                type="text"
+                type="password"
                 name="loginPassword"
                 placeholder="Password"
                 value={this.state.loginPassword}
@@ -78,7 +78,7 @@ export default class LogInForm extends Component {
               />
               Email:{" "}
               <input
-                type="text"
+                type="password"
                 name="loginEmail"
                 placeholder="Email"
                 value={this.state.loginEmail}

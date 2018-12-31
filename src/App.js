@@ -116,7 +116,8 @@ class App extends Component {
     console.log("logOut");
     localStorage.removeItem("token");
     this.setState({
-      user: null
+      user: null,
+      logIn: true
     });
   };
 

@@ -13,6 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.profile {
+  margin-top: 50px;
+}
+.profilePage {
+  text-align: left;
+  padding-left: 20px;
+}
 .monologue {
   margin-left: auto;
   margin-right: auto;
@@ -80,21 +88,21 @@ img {
   justify-content: center;
   align-items: center;
 }
-/* #bg-modal-login {
+.bg-modal-login {
   width: 100%;
   height: 200%;
   left: 0px;
   background-color: black;
   position: absolute;
-  top: 200px;
+  top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 .modal-content-login {
   width: 40%;
-  top: 200px;
-  height: 300px;
+  top: 400px;
+  height: 700px;
   background-color: white;
   border-radius: 4px;
   text-align: center;
@@ -104,7 +112,7 @@ img {
 }
 .modal-content {
   width: 600px;
-  top: -150px;
+  top: 50px;
   height: 675px;
   background-color: white;
   border-radius: 4px;
@@ -168,13 +176,6 @@ label {
 .close:hover {
   color: #e60000;
 }
-
-/* .showMonologue {
-  text-align: center;
-  justify-content: center;
-  left: 250px;
-  width: 300px;
-} */
 
 ButtonToolbar {
   margin: 5px;

@@ -2,15 +2,24 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MonologueContainer from "../containers/MonologueContainer.js";
+import ProfilePage from "./ProfilePage.js";
 
 export default class Header extends Component {
   state = {
-    showClick: false
+    showClick: false,
+    profileClick: false
   };
   goToMonologues = () => {
     console.log("monologues");
     this.setState({
       showClick: !this.state.showClick
+    });
+  };
+
+  showProfile = () => {
+    console.log("profile");
+    this.setState({
+      profileClick: !this.state.profileClick
     });
   };
 
@@ -76,7 +85,9 @@ export default class Header extends Component {
                     title="Profile"
                     id="basic-nav-dropdown"
                   >
-                    <MenuItem eventKey={3.1}>Account</MenuItem>
+                    <MenuItem eventKey={3.1} onClick={this.showProfile}>
+                      Account
+                    </MenuItem>
                     <MenuItem eventKey={3.2}>Messages</MenuItem>
                     <MenuItem eventKey={3.3}>Something else here</MenuItem>
                     <MenuItem divider />
@@ -95,6 +106,9 @@ export default class Header extends Component {
             current_user={this.props.current_user}
             className="monologueContainer"
           />
+        ) : null}
+        {this.state.profileClick ? (
+          <ProfilePage current_user={this.props.current_user} />
         ) : null}
       </React.Fragment>
     );
