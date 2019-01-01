@@ -25,7 +25,7 @@ export default class ProfilePage extends Component {
 
   handleUpdate = (e, values) => {
     e.preventDefault();
-    console.log(this.state);
+    console.log(values);
     fetch(`http://localhost:3000/api/v1/users/${this.props.current_user.id}`, {
       method: "PATCH",
       headers: {
@@ -34,17 +34,28 @@ export default class ProfilePage extends Component {
       body: JSON.stringify(values)
     })
       .then(response => response.json())
-      .then(console.log);
+      .then(resp => {
+        console.log(values);
+        this.setState({
+          editForm: false,
+          picture: values.picture,
+          username: values.username,
+          email: values.email,
+          name: values.name
+        });
+      });
   };
   render() {
     return (
       <div className="profilePage">
         <h1 className="profile">PROFILE PAGE</h1>
         <img src={this.props.current_user.picture} alt="profile" />
+        <h4> Name: {this.props.current_user.name} </h4>
+
         <h4> Username: {this.props.current_user.username} </h4>
         <h4> Email: {this.props.current_user.email} </h4>
 
-        <Button onClick={this.editProfile}>Edit Profile </Button>
+        <Button onClick={this.editProfile}>Edit Profile</Button>
 
         {this.state.editForm ? (
           <Form onChange={this.handleChange}>
