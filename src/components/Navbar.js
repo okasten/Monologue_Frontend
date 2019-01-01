@@ -12,14 +12,16 @@ export default class Header extends Component {
   goToMonologues = () => {
     console.log("monologues");
     this.setState({
-      showClick: !this.state.showClick
+      showClick: !this.state.showClick,
+      profileClick: false
     });
   };
 
   showProfile = () => {
     console.log("profile");
     this.setState({
-      profileClick: !this.state.profileClick
+      profileClick: !this.state.profileClick,
+      showClick: false
     });
   };
 
@@ -108,7 +110,10 @@ export default class Header extends Component {
           />
         ) : null}
         {this.state.profileClick ? (
-          <ProfilePage current_user={this.props.current_user} />
+          <ProfilePage
+            updateUser={this.props.updateUser}
+            current_user={this.props.current_user}
+          />
         ) : null}
       </React.Fragment>
     );

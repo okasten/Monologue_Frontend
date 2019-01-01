@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import Form from "../components/Form.js";
 import Monologue from "../components/Monologue.js";
+import Share from "../components/Share.js";
 
 export default class MonologueContainer extends Component {
   state = {
@@ -17,7 +18,8 @@ export default class MonologueContainer extends Component {
     editClicked: false,
     currentMonologue: "",
     showSingleMonologue: false,
-    timer: false
+    timer: false,
+    share: false
   };
 
   componentDidMount() {
@@ -132,13 +134,22 @@ export default class MonologueContainer extends Component {
   handleClick = monologue => {
     this.setState({
       currentMonologue: monologue,
-      showSingleMonologue: !this.state.showSingleMonologue
+      showSingleMonologue: !this.state.showSingleMonologue,
+      share: false
     });
   };
 
   closeEdit = () => {
     this.setState({
-      editClicked: !this.state.editClicked
+      editClicked: !this.state.editClicked,
+      share: false
+    });
+  };
+
+  handleShare = monologue => {
+    console.log(monologue);
+    this.setState({
+      share: !this.state.share
     });
   };
   render() {
@@ -188,6 +199,7 @@ export default class MonologueContainer extends Component {
                 handleEdit={this.handleEdit}
                 handleTimer={this.handleTimer}
                 handlePatch={this.handlePatch}
+                handleShare={this.handleShare}
               />
             ) : null}
           </Col>
@@ -204,6 +216,12 @@ export default class MonologueContainer extends Component {
             currentMonologue={this.state.currentMonologue}
             handleSubmit={this.handlePatch}
             handleClose={this.closeEdit}
+          />
+        ) : null}
+        {this.state.share ? (
+          <Share
+            monologue={this.state.currentMonologue}
+            current_user={this.props.current_user}
           />
         ) : null}
       </Grid>

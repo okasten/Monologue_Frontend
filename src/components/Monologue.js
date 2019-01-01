@@ -22,20 +22,6 @@ export default class Monologue extends Component {
   };
 
   render() {
-    // const popoverHoverFocus = (
-    //   <Popover
-    //     id="popover-trigger-hover-focus"
-    //     title={this.props.monologue.character}
-    //   >
-    //     <strong>Genre: </strong>
-    //     {this.props.monologue.genre} <br />
-    //     <strong>Age: </strong>
-    //     {this.props.monologue.age} <br />
-    //     <strong>Length: </strong>
-    //     {this.props.monologue.length}
-    //   </Popover>
-    // );
-
     const fullMonologue = (
       <Col xs={6} xsOffset={6} className="monologue btn-center">
         <h3>
@@ -43,6 +29,13 @@ export default class Monologue extends Component {
         </h3>
         <p className="script">{this.props.monologue.script}</p>
         <ButtonToolbar className="buttons" bsStyle="text-center">
+          <Button
+            onClick={() => this.props.handleShare(this.props.monologue)}
+            bsSize="small"
+            bsStyle="primary"
+          >
+            Share Monologue
+          </Button>
           <Button
             bsSize="small"
             bsStyle="warning"

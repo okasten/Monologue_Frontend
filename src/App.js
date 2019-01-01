@@ -121,6 +121,11 @@ class App extends Component {
     });
   };
 
+  updateUser = userValues => {
+    this.setState({
+      user: userValues
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -130,6 +135,7 @@ class App extends Component {
           handleSignUp={this.handleSignUp}
           current_user={this.state.user}
           handleLogOut={this.handleLogOut}
+          updateUser={this.updateUser}
         />
 
         {this.state.logIn ? (

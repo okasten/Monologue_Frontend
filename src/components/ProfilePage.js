@@ -35,6 +35,7 @@ export default class ProfilePage extends Component {
     })
       .then(response => response.json())
       .then(resp => {
+        this.props.updateUser(resp);
         console.log(values);
         this.setState({
           editForm: false,
