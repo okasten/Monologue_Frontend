@@ -97,9 +97,11 @@ code {
 }
 
 .script {
-  text-align: center;
   justify-content: center;
+  text-align: center;
+  display: flex;
   height: 100%;
+  overflow: wrap;
 }
 /* .title {
   float: left;
@@ -329,4 +331,5 @@ ButtonToolbar {
 textarea {
   border: 1px solid #888;
   width: 80%;
+  color: black;
 }

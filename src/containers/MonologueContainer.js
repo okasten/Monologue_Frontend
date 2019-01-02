@@ -90,11 +90,11 @@ export default class MonologueContainer extends Component {
     });
   };
 
-  handlePatch = (e, values, monologue) => {
+  handlePatch = (e, values) => {
     fetch(
       `http://localhost:3000/api/v1/users/${
         this.props.current_user.id
-      }/usermonologues/${monologue.id}`,
+      }/usermonologues/${this.state.currentMonologue.id}`,
       {
         method: "PATCH",
         headers: {
@@ -106,7 +106,7 @@ export default class MonologueContainer extends Component {
       .then(response => response.json())
       .then(resmonologue => {
         let newArray = [...this.state.monologues];
-        let oldMonologue = newArray.indexOf(monologue);
+        let oldMonologue = newArray.indexOf(this.state.currentMonologue);
 
         newArray[oldMonologue] = resmonologue;
 
