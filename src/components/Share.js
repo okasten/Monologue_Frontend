@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import SearchUsers from "./SearchUsers.js";
 
 export default class Share extends Component {
-  stae = {
+  state = {
     shareUser: "",
     users: []
   };
