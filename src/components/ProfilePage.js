@@ -46,39 +46,107 @@ export default class ProfilePage extends Component {
         });
       });
   };
+
+  handleClose = () => {
+    this.setState({
+      editForm: !this.state.editForm
+    });
+  };
   render() {
     return (
       <div className="profilePage">
         <h1 className="profile">PROFILE PAGE</h1>
-        <img src={this.props.current_user.picture} alt="profile" />
-        <h4> Name: {this.props.current_user.name} </h4>
+        <div className="profileInfo">
+          {this.props.current_user.picture === null ? (
+            <img
+              className="img-circle"
+              src="http://worldartsme.com/images/actor-free-clipart-1.jpg"
+              alt="profile"
+            />
+          ) : (
+            <img
+              className="img-circle"
+              src={this.props.current_user.picture}
+              alt="profile"
+            />
+          )}
 
-        <h4> Username: {this.props.current_user.username} </h4>
-        <h4> Email: {this.props.current_user.email} </h4>
+          <h4>
+            {" "}
+            <strong>Name: </strong>
+            {this.props.current_user.name}{" "}
+          </h4>
 
-        <Button onClick={this.editProfile}>Edit Profile</Button>
+          <h4>
+            {" "}
+            <strong>Username: </strong>
+            {this.props.current_user.username}{" "}
+          </h4>
+          <h4>
+            {" "}
+            <strong>Email: </strong>
+            {this.props.current_user.email}{" "}
+          </h4>
+
+          <Button onClick={this.editProfile}>Edit Profile</Button>
+        </div>
 
         {this.state.editForm ? (
-          <Form onChange={this.handleChange}>
-            <img src={this.state.picture} alt="profile" />
-            <input type="file" /> <br />
-            Name:{" "}
-            <input type="text" name="name" placeholder={this.state.name} />
-            <br />
-            Username:{" "}
-            <input
-              type="text"
-              name="username"
-              placeholder={this.state.username}
-            />
-            <br />
-            Email:{" "}
-            <input type="text" name="email" placeholder={this.state.email} />
-            <br />
-            <Button onClick={e => this.handleUpdate(e, this.state)}>
-              Update Profile
-            </Button>
-          </Form>
+          <div className="bg-modal-profile">
+            <div className="modal-content-profile">
+              <div className="close" onClick={this.handleClose}>
+                +
+              </div>
+              <Form className="profileForm" onChange={this.handleChange}>
+                <h2 className="center"> Edit Profile </h2>
+                <br />
+                <div className="form-group">
+                  <img
+                    className="img-circle center"
+                    src={this.state.picture}
+                    alt="profile"
+                  />
+                  <br />
+                  <br />
+                  Profile Picture URL: <input type="text" name="picture" />
+                </div>
+
+                <div className="form-group">
+                  Name:{" "}
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder={this.state.name}
+                  />
+                </div>
+
+                <div className="form-group">
+                  Username:{" "}
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder={this.state.username}
+                  />
+                </div>
+
+                <div className="form-group">
+                  Email:{" "}
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder={this.state.email}
+                  />
+                </div>
+
+                <Button
+                  className="center"
+                  onClick={e => this.handleUpdate(e, this.state)}
+                >
+                  Update Profile
+                </Button>
+              </Form>
+            </div>
+          </div>
         ) : null}
       </div>
     );

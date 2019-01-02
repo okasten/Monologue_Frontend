@@ -170,18 +170,21 @@ export default class MonologueContainer extends Component {
           placement="bottom"
           overlay={popoverHoverFocus}
         >
-          <h3 className="title" onClick={() => this.handleClick(monologue)}>
+          <h3
+            className="monologue-title"
+            onClick={() => this.handleClick(monologue)}
+          >
             {monologue.character} from {monologue.play}
           </h3>
         </OverlayTrigger>
       );
     });
     return (
-      <Grid>
+      <Grid className="monologuepage">
         <br />
         <h1 className="pageHeader"> Monologue Repertoire </h1>
         <Row>
-          <Col xs={4} md={4}>
+          <Col xs={4} md={4} className="monologueContainer">
             {list}
             <Button
               bsStyle="primary"
@@ -208,14 +211,15 @@ export default class MonologueContainer extends Component {
           <Form
             handleSubmit={this.handleSubmit}
             handleClose={this.addMonologue}
-            currentMonologue={""}
+            monologue={""}
           />
         ) : null}
         {this.state.editClicked ? (
           <Form
-            currentMonologue={this.state.currentMonologue}
+            monologue={this.state.currentMonologue}
             handleSubmit={this.handlePatch}
             handleClose={this.closeEdit}
+            context="edit"
           />
         ) : null}
         {this.state.share ? (

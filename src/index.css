@@ -4,9 +4,22 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  background-image: url("./the_globe-ConvertImage.jpg");
+  background-color: grayscale(90%);
+  background-size: cover;
+}
+.title {
+  color: #fff;
+  font-size: 50px;
+  padding-top: 60px;
+  padding-bottom: 550px;
+}
+.globe {
+  color: #fff;
 }
 
 code {
@@ -14,28 +27,79 @@ code {
     monospace;
 }
 
+.monologue-title {
+  color: #fff;
+}
+
 .profile {
   margin-top: 50px;
 }
 .profilePage {
-  text-align: left;
-  padding-left: 20px;
-}
-.monologue {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100px;
-
-  display: block;
   text-align: center;
+  padding-left: 20px;
+  margin-top: 60px;
+  color: white;
+}
+
+.profileInfo {
+  border: solid;
+  border-radius: 10px;
+  background-color: #333;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  margin-left: 25%;
+  padding: 30px;
   font-size: 20px;
 }
 
+.newMonologue {
+  text-align: center;
+  font-size: 15px;
+  display: block;
+}
+
+.newMonologue input {
+  display: block;
+}
+.monologue {
+  background-color: #333;
+  padding: 15px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: #fff;
+
+  display: block;
+  text-align: center;
+  font-size: 25px;
+}
+
+.monologueContainer {
+  padding: 15px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #333;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: #fff;
+
+  display: block;
+  text-align: center;
+  font-size: 25px;
+}
+
 .script {
-  width: 4px;
   text-align: center;
   justify-content: center;
-  height: 100px;
+  height: 100%;
 }
 /* .title {
   float: left;
@@ -44,15 +108,15 @@ OverlayTrigger {
   text-align: center;
 }
 .individualMonologues {
-  padding: 5px;
-  text-align: left;
+  padding: 10px;
+  text-align: center;
   padding-left: 30px;
 }
 .individualMonologues:hover {
   cursor: pointer;
 }
 button {
-  margin-top: 20px;
+  margin: 15px;
 }
 .buttons {
   text-align: center;
@@ -61,25 +125,41 @@ button {
   margin-top: 20px;
 }
 .pageHeader {
-  font-size: 40px;
-  text-decoration: underline;
-  margin-top: 70px;
+  font-size: 50px;
+  margin-top: 60px;
+  color: white;
 }
 .log-in-button {
-  margin-top: 40px;
+  margin-top: 80px;
+  margin-bottom: 0px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 0px;
+  height: 40px;
 }
-
+.sign-up-button {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 0px;
+  height: 40px;
+}
+.loginForm label {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
 img {
   text-align: center;
   width: 50%;
   height: 50%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .bg-modal {
   width: 100%;
-  height: 375%;
+  height: 150%;
   left: 0px;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -88,42 +168,99 @@ img {
   justify-content: center;
   align-items: center;
 }
-.bg-modal-login {
+.bg-modal-profile {
   width: 100%;
   height: 200%;
   left: 0px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
-  top: 50px;
+  top: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.modal-content-login {
-  width: 40%;
-  top: 400px;
+
+.modal-content-profile {
+  width: 600px;
+  top: -120px;
+  height: 705px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  border: solid;
+  border-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  font-size: 15px;
+  display: block;
+}
+
+.bg-modal-monologue {
+  width: 100%;
+  height: 250%;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content-monologue {
+  width: 600px;
+  top: -100px;
   height: 700px;
-  background-color: white;
-  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  border: solid;
+  border-color: white;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   position: relative;
   font-size: 20px;
 }
+
+.profileForm {
+  padding-top: 10px;
+  text-align: center;
+  display: block;
+}
+.sign-up-button {
+  margin-left: 0;
+}
+
+.profileForm input {
+  display: block;
+}
+
 .modal-content {
   width: 600px;
-  top: 50px;
-  height: 675px;
-  background-color: white;
-  border-radius: 4px;
+  top: -150px;
+  height: 660px;
+  background-color: #333;
+  border: solid;
+  border-color: white;
+  border-radius: 10px;
   text-align: center;
   padding: 10px;
   position: relative;
   font-size: 20px;
+  color: #fff;
+}
+.loginForm {
+  justify-content: center;
+  text-align: center;
+  display: block;
+  font-size: 15px;
+}
+.loginForm input {
+  display: block;
 }
 .bg-modal-stopwatch {
-  width: 400%;
-  height: 400%;
+  width: 350%;
+  height: 350%;
   left: -550px;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -135,11 +272,14 @@ img {
 .modal-content-stopwatch {
   width: 20%;
   top: -100px;
-  height: 300px;
-  background-color: white;
-  border-radius: 4px;
+  height: 275px;
+  background-color: #333;
+  border: solid;
+  border-color: white;
+  color: #fff;
+  border-radius: 10px;
   text-align: center;
-  padding: 50px;
+  padding: 40px;
   position: relative;
   left: 450px;
   font-size: 20px;
@@ -153,17 +293,20 @@ img {
   text-align: center;
   justify-content: center;
   padding: auto;
-  /* margin-left: 110px; */
-  margin-top: 20px;
+  margin-left: 70px;
+  margin-top: 10px;
 }
 input {
   width: 75%;
   display: inline-block;
   margin: 10px auto;
-  align: right;
+  text-align: left;
+  justify-content: left;
+  color: #000;
 }
 label {
   text-align: left;
+  justify-content: left;
 }
 .close {
   position: absolute;
@@ -172,6 +315,7 @@ label {
   font-size: 42px;
   transform: rotate(45deg);
   cursor: pointer;
+  color: white;
 }
 .close:hover {
   color: #e60000;

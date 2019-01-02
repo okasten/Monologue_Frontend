@@ -30,10 +30,6 @@ class App extends Component {
             user: user.user
           });
         });
-    } else {
-      this.setState({
-        logIn: true
-      });
     }
   }
 
@@ -117,7 +113,7 @@ class App extends Component {
     localStorage.removeItem("token");
     this.setState({
       user: null,
-      logIn: true
+      logIn: false
     });
   };
 

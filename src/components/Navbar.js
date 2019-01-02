@@ -25,6 +25,15 @@ export default class Header extends Component {
     });
   };
 
+  handleLogOut = () => {
+    this.setState({
+      profileClick: false,
+      showClick: false
+    });
+
+    this.props.handleLogOut();
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -39,14 +48,14 @@ export default class Header extends Component {
         >
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#brand">The Actor's Monologue Journal</a>
+              <a href="http://localhost:3001">The Actor's Monologue Journal</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse
             handleLogIn={this.props.handleLogIn}
             handleSignUp={this.props.handleSignUp}
-            handleLogOut={this.props.handleLogOut}
+            handleLogOut={this.handleLogOut}
           >
             <Nav>
               {this.props.current_user ? (
@@ -58,9 +67,6 @@ export default class Header extends Component {
                   >
                     My Monologues
                   </NavItem>
-                  <NavItem eventKey={2} href="#">
-                    Share A Monologue
-                  </NavItem>
                 </React.Fragment>
               ) : null}
             </Nav>
@@ -68,7 +74,7 @@ export default class Header extends Component {
               pullRight
               handleLogIn={this.props.handleLogIn}
               handleSignUp={this.props.handleSignUp}
-              handleLogOut={this.props.handleLogOut}
+              handleLogOut={this.handleLogOut}
             >
               {!this.props.current_user ? (
                 <React.Fragment>
@@ -95,7 +101,7 @@ export default class Header extends Component {
                     <MenuItem divider />
                     <MenuItem eventKey={3.3}>Separated link</MenuItem>
                   </NavDropdown>
-                  <NavItem onClick={this.props.handleLogOut}>
+                  <NavItem onClick={this.handleLogOut}>
                     <Link to="/">Log Out </Link>
                   </NavItem>
                 </React.Fragment>
@@ -103,6 +109,13 @@ export default class Header extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        {!this.state.showClick && !this.state.profileClick ? (
+          <React.Fragment>
+            <h1 className="title">The Actor's Monologue Journal</h1>
+            <h3 className="globe">The Globe Theatre, London</h3>
+          </React.Fragment>
+        ) : null}
+
         {this.state.showClick ? (
           <MonologueContainer
             current_user={this.props.current_user}

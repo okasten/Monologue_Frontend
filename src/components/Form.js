@@ -3,15 +3,18 @@ import { ButtonToolbar, Button } from "react-bootstrap";
 
 export default class Form extends Component {
   state = {
-    character: this.props.currentMonologue.character,
-    play: this.props.currentMonologue.play,
-    age: this.props.currentMonologue.age,
-    genre: this.props.currentMonologue.genre,
-    length: this.props.currentMonologue.length,
-    script: this.props.currentMonologue.script,
-    file: this.props.currentMonologue.file,
+    character: this.props.monologue.character,
+    play: this.props.monologue.play,
+    age: this.props.monologue.age,
+    genre: this.props.monologue.genre,
+    length: this.props.monologue.length,
+    script: this.props.monologue.script,
+    file: this.props.monologue.file,
     clicked: false
   };
+  componentDidMount() {
+    console.log(this.state);
+  }
 
   handleChange = event => {
     this.setState({
@@ -20,13 +23,14 @@ export default class Form extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
-      <div className="bg-modal">
-        <div className="modal-content">
+      <div className="bg-modal-monologue">
+        <div className="modal-content-monologue">
           {this.props.context === "edit" ? (
             <h2>
-              Edit "{this.props.currentMonologue.character} from{" "}
-              {this.props.currentMonologue.play}"{" "}
+              Edit {this.props.monologue.character} from{" "}
+              {this.props.monologue.play}{" "}
             </h2>
           ) : (
             <h2>Add A Monologue</h2>
@@ -34,7 +38,7 @@ export default class Form extends Component {
           <div className="close" onClick={this.props.handleClose}>
             +
           </div>
-          <form>
+          <form className="newMonologue">
             <label>Character: </label>
             <input
               type="text"
@@ -43,7 +47,6 @@ export default class Form extends Component {
               value={this.state.character}
               onChange={event => this.handleChange(event)}
             />
-            <br />
             <label>Play: </label>
             <input
               type="text"
@@ -52,7 +55,6 @@ export default class Form extends Component {
               value={this.state.play}
               onChange={event => this.handleChange(event)}
             />
-            <br />
             <label>Age: </label>
             <input
               type="number"
@@ -61,7 +63,7 @@ export default class Form extends Component {
               value={this.state.age}
               onChange={event => this.handleChange(event)}
             />
-            <br />
+
             <label>Length: </label>
             <input
               type="text"
@@ -70,7 +72,7 @@ export default class Form extends Component {
               value={this.state.length}
               onChange={event => this.handleChange(event)}
             />
-            <br />
+
             <label>Genre: </label>
             <input
               type="text"
@@ -79,9 +81,10 @@ export default class Form extends Component {
               value={this.state.genre}
               onChange={event => this.handleChange(event)}
             />
-            <br />
+
             <label>Monologue: </label>
             <br />
+
             <textarea
               name="script"
               placeholder="Enter Monologue Here..."
@@ -89,9 +92,11 @@ export default class Form extends Component {
               onChange={event => this.handleChange(event)}
             />
             <br />
+            <label> File URL </label>
+
             <input
               id="formControlsFile"
-              type="file"
+              type="text"
               label="File"
               help="Example block-level help text here."
             />

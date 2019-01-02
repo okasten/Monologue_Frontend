@@ -17,12 +17,12 @@ export default class LogInForm extends Component {
 
   render() {
     return (
-      <div className="bg-modal-login">
-        <div className="modal-content-login">
+      <div className="bg-modal">
+        <div className="modal-content">
           {this.props.context === "logIn" ? (
-            <h2>Welcome back!</h2>
+            <h2>Log In!</h2>
           ) : (
-            <h2>Welcome, Thespian!</h2>
+            <h2>Sign Up!</h2>
           )}
           <div onClick={this.props.handleClose}>
             <Link to="/" className="close">
@@ -31,21 +31,21 @@ export default class LogInForm extends Component {
           </div>
 
           {this.props.context === "logIn" ? (
-            <Form horizontal onChange={this.handleChange}>
+            <Form className="loginForm" horizontal onChange={this.handleChange}>
               <img
                 className="img-rounded"
                 alt="acting snl gif"
                 src="http://media.giphy.com/media/1LiryotCCtd7y/giphy.gif"
               />
-              <h3>Log In</h3>
-              Username:{" "}
+              <br />
+              <label>Username: </label>
               <input
                 type="text"
                 name="loginUsername"
                 placeholder="Username"
                 value={this.state.loginUsername}
               />
-              Password:{" "}
+              <label>Password: </label>
               <input
                 type="password"
                 name="loginPassword"
@@ -62,28 +62,28 @@ export default class LogInForm extends Component {
               </Button>
             </Form>
           ) : (
-            <Form horizontal onChange={this.handleChange}>
+            <Form horizontal className="loginForm" onChange={this.handleChange}>
               <img
                 className="img-rounded"
                 alt="acting snl gif"
                 src="http://media.giphy.com/media/1LiryotCCtd7y/giphy.gif"
               />
-              <h3>Sign Up</h3>
-              Username:{" "}
+              <br />
+              <label>Username: </label>
               <input
                 type="text"
                 name="loginUsername"
                 placeholder="Username"
                 value={this.state.loginUsername}
               />
-              Email:{" "}
+              <label>Email: </label>
               <input
                 type="password"
                 name="loginEmail"
                 placeholder="Email"
                 value={this.state.loginEmail}
               />
-              Password:{" "}
+              <label>Password: </label>
               <input
                 type="text"
                 name="loginPassword"
