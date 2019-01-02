@@ -78,14 +78,14 @@ export default class LogInForm extends Component {
               />
               <label>Email: </label>
               <input
-                type="password"
+                type="text"
                 name="loginEmail"
                 placeholder="Email"
                 value={this.state.loginEmail}
               />
               <label>Password: </label>
               <input
-                type="text"
+                type="password"
                 name="loginPassword"
                 placeholder="Password"
                 value={this.state.loginPassword}

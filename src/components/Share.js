@@ -54,7 +54,11 @@ export default class Share extends Component {
             shareWithUser={this.shareWithUser}
             allUsers={this.allUsers}
           />
-          <Button className="share-button" onClick={this.shareMonologue}>
+          <Button
+            bsStyle="primary"
+            className="share-button"
+            onClick={this.shareMonologue}
+          >
             SHARE
           </Button>
         </div>

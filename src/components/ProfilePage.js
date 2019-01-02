@@ -88,7 +88,9 @@ export default class ProfilePage extends Component {
             {this.props.current_user.email}{" "}
           </h4>
 
-          <Button onClick={this.editProfile}>Edit Profile</Button>
+          <Button bsStyle="primary" onClick={this.editProfile}>
+            Edit Profile
+          </Button>
         </div>
 
         {this.state.editForm ? (
@@ -139,6 +141,7 @@ export default class ProfilePage extends Component {
                 </div>
 
                 <Button
+                  bsStyle="primary"
                   className="center"
                   onClick={e => this.handleUpdate(e, this.state)}
                 >
