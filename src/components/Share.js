@@ -33,22 +33,31 @@ export default class Share extends Component {
       body: JSON.stringify(this.props.monologue)
     })
       .then(response => response.json())
-      .then(console.log);
+      .then(monologue => {
+        this.props.handleClose();
+      });
   };
 
   render() {
     return (
-      <div>
-        <h1>
-          Share {this.props.monologue.character} from{" "}
-          {this.props.monologue.play} with another user!
-        </h1>
-        <SearchUsers
-          current_user={this.props.current_user}
-          shareWithUser={this.shareWithUser}
-          allUsers={this.allUsers}
-        />
-        <Button onClick={this.shareMonologue}>SHARE</Button>
+      <div className="bg-modal">
+        <div className="modal-content-share">
+          <div className="close" onClick={this.props.handleClose}>
+            +
+          </div>
+          <h1>
+            Share {this.props.monologue.character} from{" "}
+            {this.props.monologue.play} with another user!
+          </h1>
+          <SearchUsers
+            current_user={this.props.current_user}
+            shareWithUser={this.shareWithUser}
+            allUsers={this.allUsers}
+          />
+          <Button className="share-button" onClick={this.shareMonologue}>
+            SHARE
+          </Button>
+        </div>
       </div>
     );
   }

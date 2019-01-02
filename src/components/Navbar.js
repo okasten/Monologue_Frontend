@@ -65,7 +65,7 @@ export default class Header extends Component {
                     current_user={this.props.current_user}
                     href="#"
                   >
-                    My Monologues
+                    <Link to="/monologues">My Monologues</Link>
                   </NavItem>
                 </React.Fragment>
               ) : null}

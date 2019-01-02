@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Grid, Col } from "react-bootstrap";
+import { Button, Form, Grid, Col, Row } from "react-bootstrap";
 
 export default class SearchUsers extends Component {
   state = {
@@ -43,7 +43,11 @@ export default class SearchUsers extends Component {
 
   render() {
     let userSearch = this.state.searchArray.map(user => {
-      return <Col onClick={() => this.setUser(user)}>{user}</Col>;
+      return (
+        <Row className="users" onClick={() => this.setUser(user)}>
+          {user}
+        </Row>
+      );
     });
     return (
       <div>

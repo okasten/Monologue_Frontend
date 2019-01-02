@@ -226,6 +226,7 @@ export default class MonologueContainer extends Component {
           <Share
             monologue={this.state.currentMonologue}
             current_user={this.props.current_user}
+            handleClose={this.handleShare}
           />
         ) : null}
       </Grid>
