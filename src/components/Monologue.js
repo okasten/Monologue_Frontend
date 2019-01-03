@@ -8,10 +8,12 @@ import {
   Grid
 } from "react-bootstrap";
 import Stopwatch from "./Stopwatch";
+import Notes from "./Notes";
 
 export default class Monologue extends Component {
   state = {
-    timer: false
+    timer: false,
+    notes: false
   };
 
   timerHandler = e => {
@@ -19,6 +21,13 @@ export default class Monologue extends Component {
       timer: !this.state.timer
     });
     this.props.handleTimer(e, this.props.monologue);
+  };
+
+  noteHandler = () => {
+    console.log("notes");
+    this.setState({
+      notes: !this.state.notes
+    });
   };
 
   render() {
@@ -53,6 +62,9 @@ export default class Monologue extends Component {
           <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
             Time Your Monologue
           </Button>
+          <Button bsSize="small" bsStyle="info" onClick={this.noteHandler}>
+            View Notes
+          </Button>
         </ButtonToolbar>
       </Col>
     );
@@ -64,6 +76,13 @@ export default class Monologue extends Component {
           <Stopwatch
             monologue={this.props.monologue}
             handleClose={this.timerHandler}
+            handlePatch={this.props.handlePatch}
+          />
+        ) : null}
+        {this.state.notes ? (
+          <Notes
+            monologue={this.props.monologue}
+            handleClose={this.noteHandler}
             handlePatch={this.props.handlePatch}
           />
         ) : null}

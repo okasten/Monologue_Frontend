@@ -113,7 +113,7 @@ export default class MonologueContainer extends Component {
         this.setState({
           editClicked: false,
           monologues: newArray,
-          showSingleMonologue: !this.state.showSingleMonologue
+          currentMonologue: resmonologue
         });
       });
   };
