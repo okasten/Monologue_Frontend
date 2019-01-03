@@ -179,13 +179,18 @@ export default class MonologueContainer extends Component {
         </OverlayTrigger>
       );
     });
+    console.log(this.state.monologues);
     return (
       <Grid className="monologuepage">
         <br />
         <h1 className="pageHeader"> Monologue Repertoire </h1>
         <Row>
           <Col xs={4} md={4} className="monologueContainer">
-            {list}
+            {this.state.monologues.length === 0 ? (
+              <h3> You don't have any monologues yet! </h3>
+            ) : (
+              list
+            )}
             <Button
               bsStyle="primary"
               className="button"

@@ -12,6 +12,9 @@ body {
   background-color: grayscale(90%);
   background-size: cover;
 }
+h3 {
+  color: #fff;
+}
 
 .notes {
   display: inline-block;
@@ -123,6 +126,7 @@ OverlayTrigger {
 }
 button {
   margin: 15px;
+  justify-content: center;
 }
 .buttons {
   display: flex;
