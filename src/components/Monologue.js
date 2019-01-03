@@ -62,7 +62,7 @@ export default class Monologue extends Component {
           <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
             Time Your Monologue
           </Button>
-          <Button bsSize="small" bsStyle="info" onClick={this.noteHandler}>
+          <Button bsSize="small" bsStyle="primary" onClick={this.noteHandler}>
             View Notes
           </Button>
         </ButtonToolbar>

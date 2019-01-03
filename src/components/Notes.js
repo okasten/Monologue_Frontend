@@ -32,26 +32,32 @@ export default class Notes extends Component {
   };
   render() {
     return (
-      <div className="bg-modal">
-        <div className="modal-content-share">
+      <div className="bg-modal-notes">
+        <div className="modal-content-notes">
           <div className="close" onClick={this.props.handleClose}>
             +
           </div>
           <h1> Notes for {this.props.monologue.character}</h1>
           {this.state.editClick ? (
-            <Form>
+            <Form className="notes">
               <input
                 onChange={this.handleChange}
                 type="textarea"
                 placeholder={this.props.monologue.notes}
                 value={this.state.newNotes}
               />
-              <Button onClick={this.handleSubmit}> Update Notes </Button>
+              <Button bsStyle="success" onClick={this.handleSubmit}>
+                {" "}
+                Update Notes{" "}
+              </Button>
             </Form>
           ) : (
             <div>
               <p>{this.props.monologue.notes}</p>
-              <Button onClick={this.handleEdit}> Edit Notes </Button>
+              <Button bsStyle="primary" onClick={this.handleEdit}>
+                {" "}
+                Edit Notes{" "}
+              </Button>
             </div>
           )}
         </div>

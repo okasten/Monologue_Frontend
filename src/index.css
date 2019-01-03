@@ -12,6 +12,10 @@ body {
   background-color: grayscale(90%);
   background-size: cover;
 }
+
+.notes {
+  display: inline-block;
+}
 .title {
   color: #fff;
   font-size: 50px;
@@ -121,9 +125,9 @@ button {
   margin: 15px;
 }
 .buttons {
+  display: flex;
   text-align: center;
-  padding-left: 13%;
-  margin: auto;
+  justify-content: center;
   margin-top: 20px;
 }
 .pageHeader {
@@ -197,10 +201,35 @@ img {
   font-size: 15px;
   display: block;
 }
-
+.bg-modal-notes {
+  width: 200%;
+  height: 250%;
+  left: -400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .modal-content-share {
   width: 600px;
   top: -50px;
+  height: auto;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  border: solid;
+  border-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  font-size: 15px;
+  display: block;
+}
+.modal-content-notes {
+  width: 600px;
+  top: -100px;
   height: auto;
   background-color: #333;
   color: #fff;
