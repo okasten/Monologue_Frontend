@@ -34,40 +34,47 @@ export default class Monologue extends Component {
     const fullMonologue = (
       <Col xs={6} xsOffset={6} className="monologue btn-center">
         <h3>
-          {this.props.monologue.character} from {this.props.monologue.play}
+          <strong>{this.props.monologue.character}</strong> from{" "}
+          <strong>{this.props.monologue.play}</strong>
         </h3>
         <p className="script">{this.props.monologue.script}</p>
+        {this.props.monologue.scanFile ? (
+          <img src={this.props.monologue.scanFile} alt="scanned monologue" />
+        ) : null}
+
         <ButtonToolbar className="buttons" bsStyle="text-center">
           <Button
             onClick={() => this.props.handleShare(this.props.monologue)}
-            bsSize="small"
+            bsSize="xsmall"
             bsStyle="primary"
           >
             Share Monologue
           </Button>
           <Button
-            bsSize="small"
+            bsSize="xsmall"
             bsStyle="warning"
             onClick={e => this.props.handleEdit(e, this.props.monologue)}
           >
             Edit Monologue
           </Button>
           <Button
-            bsSize="small"
+            bsSize="xsmall"
             bsStyle="danger"
             onClick={e => this.props.handleDelete(e, this.props.monologue)}
           >
             Delete Monologue
           </Button>
-          <Button bsSize="small" bsStyle="info" onClick={this.timerHandler}>
+          <Button bsSize="xsmall" bsStyle="info" onClick={this.timerHandler}>
             Time Your Monologue
           </Button>
-          <Button bsSize="small" bsStyle="primary" onClick={this.noteHandler}>
+          <Button bsSize="xsmall" bsStyle="primary" onClick={this.noteHandler}>
             View Notes
           </Button>
         </ButtonToolbar>
       </Col>
     );
+
+    console.log(this.props.monologue);
     return (
       <div>
         {fullMonologue}
