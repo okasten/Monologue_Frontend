@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.length > 0) {
       let token = localStorage.getItem("token");
-
+      console.log("HELLO I'M HERE");
       fetch("http://localhost:3000/api/v1/profile/", {
         method: "GET",
         headers: {
